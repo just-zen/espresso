@@ -1,6 +1,7 @@
 import sqlite3
 import sys
 
+from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidgetItem
 from cof import Ui_MainWindow
 
@@ -8,9 +9,9 @@ from cof import Ui_MainWindow
 class MyWidget(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        self.setupUi(self)
+        uic.loadUi('main.ui', self)
         self.show()
-        self.con = sqlite3.connect("coffee.db")
+        self.con = sqlite3.connect("coffee.sqlite")
         cur = self.con.cursor()
         self.pushButton.clicked.connect(self.run)
 
